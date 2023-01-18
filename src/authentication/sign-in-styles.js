@@ -65,6 +65,7 @@ const loginStyles = makeStyles(() =>
       borderRadius: ".9em",
       margin: "0 .5em",
       color: "grey",
+      cursor: "pointer",
     },
     textContainer: {
       alignSelf: "center",
@@ -78,6 +79,9 @@ const loginStyles = makeStyles(() =>
     error: {
       color: "red",
       fontSize: ".8rem",
+    },
+    alert: {
+      width: "60%",
     },
   })
 );

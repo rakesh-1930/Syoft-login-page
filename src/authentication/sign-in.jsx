@@ -16,11 +16,13 @@ import {
 } from "@material-ui/core";
 
 import loginStyles from "./sign-in-styles";
+import { Alert } from "@material-ui/lab";
 // import FormImage from '../components/form-image';
 
 function SignIn(props) {
   const [values, setValues] = React.useState({});
   const [error, setError] = React.useState([]);
+  let [alertPopup, setAlertPopup] = React.useState(false);
 
   const classes = loginStyles(props);
 
@@ -148,6 +150,9 @@ function SignIn(props) {
           delectus fugiat laborum, earum, minus porro ipsam? Quo est non magni
           ducimus.
         </Typography>
+        {alertPopup && (
+          <Alert className={classes.alert}>This is comming up soon!</Alert>
+        )}
       </Paper>
       <Paper className={classes.formInputContainer}>
         <Typography variant="h4">Sign In</Typography>
@@ -210,9 +215,33 @@ function SignIn(props) {
           <Typography className={classes.iconText}>
             ----- or Continue with ----{" "}
           </Typography>
-          <TwitterIcon className={classes.iconBorder} />
-          <GitHubIcon className={classes.iconBorder} />
-          <FacebookIcon className={classes.iconBorder} />
+          <TwitterIcon
+            onClick={() => {
+              setAlertPopup(true);
+              setTimeout(() => {
+                setAlertPopup(() => (alertPopup = false));
+              }, 2500);
+            }}
+            className={classes.iconBorder}
+          />
+          <GitHubIcon
+            onClick={() => {
+              setAlertPopup(true);
+              setTimeout(() => {
+                setAlertPopup(() => (alertPopup = false));
+              }, 2500);
+            }}
+            className={classes.iconBorder}
+          />
+          <FacebookIcon
+            onClick={() => {
+              setAlertPopup(true);
+              setTimeout(() => {
+                setAlertPopup(() => (alertPopup = false));
+              }, 2500);
+            }}
+            className={classes.iconBorder}
+          />
         </Grid>
       </Paper>
     </Box>

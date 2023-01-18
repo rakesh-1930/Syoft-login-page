@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
+import Alert from "@material-ui/lab/Alert";
 
 import {
   Box,
@@ -13,13 +14,14 @@ import {
 } from "@material-ui/core";
 
 import signupStyles from "./sign-up-style";
-import { CheckBox } from "@material-ui/icons";
+import Checkbox from "@material-ui/core/Checkbox";
 // import FormImage from '../components/form-image';
 
 function SignUp(props) {
   const [values, setValues] = React.useState({});
   const [error, setError] = React.useState([]);
-  const [checked, setChecked] = React.useState(false);
+  let [checked, setChecked] = React.useState(false);
+  let [alertPopup, setAlertPopup] = React.useState(false);
 
   const classes = signupStyles(props);
 
@@ -177,6 +179,9 @@ function SignUp(props) {
           <Avatar alt="img" src="#" />
           <Avatar alt="img" src="#" />
         </div>
+        {alertPopup && (
+          <Alert className={classes.alert}>This is feature is comming up</Alert>
+        )}
       </Paper>
       <Paper className={classes.formInputContainer}>
         <Typography variant="h4">Sign Up</Typography>
@@ -262,15 +267,37 @@ function SignUp(props) {
               {error && error["user_company"]}
             </Typography>
           </FormControl>
-          <CheckBox
+          <Checkbox
             checked={checked}
-            onChange={handleChange}
-            inputProps={{ "aria-label": "primary checkbox" }}
+            onChange={() => handleChange()}
+            inputProps={{ "aria-label": "secondary checkbox" }}
           />
           <Typography variant="subtile1">
             I agree to the{" "}
-            <span className={classes.link}>term and condition </span> and{" "}
-            <span className={classes.link}> privacy policy</span>
+            <span
+              onClick={() => {
+                setAlertPopup(true);
+                setTimeout(() => {
+                  setAlertPopup(() => (alertPopup = false));
+                }, 2500);
+              }}
+              className={classes.link}
+            >
+              term and condition{" "}
+            </span>{" "}
+            and{" "}
+            <span
+              onClick={() => {
+                setAlertPopup(true);
+                setTimeout(() => {
+                  setAlertPopup(() => (alertPopup = false));
+                }, 2500);
+              }}
+              className={classes.link}
+            >
+              {" "}
+              privacy policy
+            </span>
           </Typography>
           <Button
             onClick={() => handleSubmit()}
