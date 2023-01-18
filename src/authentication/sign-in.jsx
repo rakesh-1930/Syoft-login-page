@@ -49,7 +49,8 @@ function SignIn(props) {
         .then((res) => {
           if (res.status === 200) {
             //save token (if any) in local storage/cookies
-            return history.push("/dashboard");
+
+            return history.push("/dashboard"); // redirecting to dashboard
           }
         });
       // get response

@@ -134,11 +134,12 @@ function SignUp(props) {
         user_email: values["user_email"],
         user_company: values["user_company"],
       };
-      const url = "https://snapkaro.com/eazyrooms_staging/api/userlogin";
+      const url =
+        "https://snapkaro.com/eazyrooms_staging/api/user_registeration";
       // call api
       axios
         .post(url, {
-          data: JSON.stringify(payload),
+          data: payload,
         })
         .then((res) => {
           if (res.data.status === 200) {
